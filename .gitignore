@@ -1,0 +1,6 @@
+.env
+cookies.json
+twistr.db
+
+.idea
+__pycache__
