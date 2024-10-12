@@ -56,7 +56,7 @@ def update_system(last_login_date = None, last_download_date = None):
     if last_login_date:
         query += 'last_login_date = ? '
         params += (last_login_date,)
-    if last_download_date:
+    elif last_download_date:
         if len(params) > 0:
             query += (', ',)
 
