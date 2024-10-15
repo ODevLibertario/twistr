@@ -1,4 +1,6 @@
 import os
+import random
+import time
 
 from nostr_sdk import Keys, Client, NostrSigner, EventBuilder, init_logger, LogLevel
 
@@ -20,8 +22,10 @@ async def upload_notes(tweets):
 
     # Send an event using the Nostr Signer
     for tweet in tweets:
-        note_text = f"""From: {tweet.user.name}\nAt: {format_date(tweet.created_at)}\n\n{tweet.full_text}""".strip()
+        note_text = f"""{tweet.user.name}\n\n{tweet.full_text}\n\nAt: {format_date(tweet.created_at)}""".strip()
 
         builder = EventBuilder.text_note(note_text, [])
+
         await client.send_event_builder(builder)
+        time.sleep(random.randint(5, 30))
 
